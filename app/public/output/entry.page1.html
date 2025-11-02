@@ -4,20 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>测试页面</title>
+    <link rel="stylesheet" href="/static/reset.scss" />
+    <link rel="icon" href="/static/favicon.ico" />
+
   </head>
   <body>
     <h1>测试页面</h1>
     <input id="env" value="{{env}}" style="display: none"></input>
     <div>{{name}}</div>
     <div>{{options}}</div>
+    <button onclick="handleClick()">获取项目列表</button>
 
     <script>
       try {
         const env = document.getElementById("env").value;
         console.log("🚀 ~ env:", env);
-        window.env = JSON.parse(env);
+        window.env = JSON.stringify(env);
       } catch (error) {
         console.log(error);
+      }
+
+      function handleClick() {
+        fetch('/project/list', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // 参数
+          body: JSON.stringify({
+            name: '项目1',
+          }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+          })
       }
     </script>
   </body>

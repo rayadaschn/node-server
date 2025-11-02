@@ -1,0 +1,9 @@
+module.exports = (app, router) => {
+  const { project: ProjectController } = app.controllers
+
+  // 接口 /project/list 获取项目列表
+  router.post(
+    '/project/list',
+    ProjectController.getList.bind(ProjectController),
+  )
+}

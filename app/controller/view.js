@@ -10,7 +10,7 @@ module.exports = (app, router) => {
         env: app.env.getEnv(),
         name: app.options?.name,
         options: JSON.stringify(app.options),
-      });
+      })
     }
-  };
-};
+  }
+}
