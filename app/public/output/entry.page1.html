@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试页面</title>
+  </head>
+  <body>
+    <h1>测试页面</h1>
+    <input id="env" value="{{env}}" style="display: none"></input>
+    <div>{{name}}</div>
+    <div>{{options}}</div>
+
+    <script>
+      try {
+        const env = document.getElementById("env").value;
+        console.log("🚀 ~ env:", env);
+        window.env = JSON.parse(env);
+      } catch (error) {
+        console.log(error);
+      }
+    </script>
+  </body>
+</html>
