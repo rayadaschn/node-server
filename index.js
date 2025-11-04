@@ -1,7 +1,8 @@
 // 引入内核
-const koaCore = require("./koa-core");
+const koaCore = require('./koa-core')
 
 // 启动项目
 koaCore.start({
-  name: "my-koa-app",
-});
+  name: 'my-koa-app',
+  homePage: '/',
+})

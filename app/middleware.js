@@ -31,4 +31,7 @@ module.exports = (app) => {
       enableTypes: ['json', 'form'],
     }),
   )
+
+  // 错误处理中间件
+  app.use(app.middlewares.errorHandler)
 }
