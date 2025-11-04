@@ -1,5 +1,9 @@
 # my-koa-core
 
+## 流程
+
+![项目运行流程](https://cdn.jsdelivr.net/gh/rayadaschn/blogImage@master/img/202511042341003.png)
+
 ## 数据处理流程
 
 1. 路由接收请求
