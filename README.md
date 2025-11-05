@@ -31,3 +31,7 @@
      ]
    }
    ```
+
+## webpack
+
+![webpack 构包流程](https://cdn.jsdelivr.net/gh/rayadaschn/blogImage@master/img/202511052307795.png)
