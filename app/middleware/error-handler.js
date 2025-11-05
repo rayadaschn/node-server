@@ -20,7 +20,7 @@ module.exports = (app) => {
       }
 
       // 返回错误响应
-      ctx.status = status || 500
+      ctx.status = 200
       ctx.body = {
         success: false,
         code: ctx.status,

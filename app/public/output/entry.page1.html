@@ -6,9 +6,10 @@
     <title>测试页面</title>
     <link rel="stylesheet" href="/static/reset.scss" />
     <link rel="icon" href="/static/favicon.ico" />
-
   </head>
   <body>
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
+
     <h1>测试页面</h1>
     <input id="env" value="{{env}}" style="display: none"></input>
     <div>{{name}}</div>
@@ -25,10 +26,17 @@
       }
 
       function handleClick() {
-        fetch('/project/list', {
+        const signKey = 'my-api-sign-key'
+        const s_t = Date.now()
+        const s_sign = md5(`${signKey}${s_t}`)
+
+
+        fetch('/api/project/list', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            's_sign': s_sign,
+            's_t': s_t,
           },
           // 参数
           body: JSON.stringify({

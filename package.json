@@ -18,7 +18,8 @@
     "koa-bodyparser": "^4.4.1",
     "koa-nunjucks-2": "^3.0.2",
     "koa-static": "^5.0.0",
-    "log4js": "^6.9.1"
+    "log4js": "^6.9.1",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

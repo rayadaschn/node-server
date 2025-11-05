@@ -3,7 +3,7 @@ module.exports = (app, router) => {
 
   // 接口 /project/list 获取项目列表
   router.post(
-    '/project/list',
+    '/api/project/list',
     ProjectController.getList.bind(ProjectController),
   )
 }
