@@ -2,13 +2,40 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const glob = require('glob')
+
+// 入口批量配置
+const entryEntries = {}
+const htmlWebpackPluginEntries = []
+// 获取 app/pages 目录下的所有 entry.*.js 文件
+const entryFiles = glob.sync(
+  path.resolve(process.cwd(), './app/pages/**/entry.*.js'),
+)
+
+entryFiles.forEach((entryFile) => {
+  const entryName = path.basename(entryFile, '.js')
+  entryEntries[entryName] = entryFile
+
+  htmlWebpackPluginEntries.push(
+    new HtmlWebpackPlugin({
+      template: path.resolve(process.cwd(), './app/view/entry.html'), // 模板文件路径
+      filename: path.resolve(
+        process.cwd(),
+        './app/public/dist/',
+        `${entryName}.html`,
+      ), // 输出的文件名
+      chunks: [entryName], // 要注入的代码块
+    }),
+  )
+})
 
 module.exports = {
   // 入口配置
-  entry: {
-    'entry.page1': './app/pages/page1/entry.page1.js',
-    'entry.page2': './app/pages/page2/entry.page2.js',
-  },
+  // entry: {
+  //   'entry.page1': './app/pages/page1/entry.page1.js',
+  //   'entry.page2': './app/pages/page2/entry.page2.js',
+  // },
+  entry: entryEntries,
   // 输出配置
   output: {
     path: path.join(process.cwd(), './app/public/dist/prod'),
@@ -74,24 +101,7 @@ module.exports = {
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false', // 关闭 Vue 生产环境下的 hydration 不匹配详情
     }),
     // 构建最终渲染的页面
-    new HtmlWebpackPlugin({
-      template: path.resolve(process.cwd(), './app/view/entry.html'), // 模板文件路径
-      filename: path.resolve(
-        process.cwd(),
-        './app/public/dist/',
-        'entry.page1.html',
-      ), // 输出的文件名
-      chunks: ['entry.page1'], // 要注入的代码块
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(process.cwd(), './app/view/entry.html'), // 模板文件路径
-      filename: path.resolve(
-        process.cwd(),
-        './app/public/dist/',
-        'entry.page2.html',
-      ), // 输出的文件名
-      chunks: ['entry.page2'], // 要注入的代码块
-    }),
+    ...htmlWebpackPluginEntries,
   ],
   // 打包优化策略
   optimization: {},
