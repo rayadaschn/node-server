@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{name}}</title>
+    <link rel="stylesheet" href="/static/reset.scss" />
+    <link rel="icon" href="/static/favicon.ico" />
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/js-md5@0.8.3/src/md5.min.js"></script>
+    <div id="root"></div>
+    <h1>入口页面</h1>
+    <input id="env" value="{{env}}" style="display: none"></input>
+    <div>{{name}}</div>
+    <div>{{options}}</div>
+    <button onclick="handleClick()">获取项目列表</button>
+
+    <script>
+      try {
+        const env = document.getElementById("env").value;
+        console.log("🚀 ~ env:", env);
+        window.env = JSON.stringify(env);
+      } catch (error) {
+        console.log(error);
+      }
+
+      function handleClick() {
+        const signKey = 'my-api-sign-key'
+        const s_t = Date.now()
+        const s_sign = md5(`${signKey}${s_t}`)
+
+
+        fetch('/api/project/list', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            's_sign': s_sign,
+            's_t': s_t,
+          },
+          // 参数
+          body: JSON.stringify({
+            name: '项目1',
+          }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+          })
+      }
+    </script>
+  </body>
+</html>
