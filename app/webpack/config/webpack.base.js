@@ -94,6 +94,7 @@ module.exports = {
     // 把第三方库暴露到 window 上，方便在浏览器中直接访问
     new webpack.ProvidePlugin({
       Vue: 'vue',
+      _: 'lodash',
     }),
     // 定义全局变量, 这里会直接替换代码中的变量. 写成字符串的形式是因为 vue 此前是读取 env 变量的, 而 env 变量只能是字符串
     new webpack.DefinePlugin({
