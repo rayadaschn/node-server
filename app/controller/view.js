@@ -6,7 +6,7 @@ module.exports = (app, router) => {
      * @param {*} ctx 上下文对象
      */
     async renderPage(ctx) {
-      await ctx.render(`output/entry.${ctx.params.page}`, {
+      await ctx.render(`dist/entry.${ctx.params.page}`, {
         env: app.env.getEnv(),
         name: app.options?.name,
         options: JSON.stringify(app.options),
