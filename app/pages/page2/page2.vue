@@ -8,12 +8,14 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { add } from '@/common/utils.js'
 
 const name = ref('')
 
 // 生命周期 - 创建完成（访问当前this实例）
 onMounted(() => {
   console.log('项目2创建完成')
+  console.log(add(1, 2))
 })
 </script>
 <style scoped>
