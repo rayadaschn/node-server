@@ -3,6 +3,7 @@
     <h1>项目2</h1>
     <input type="text" v-model="name" />
     <div>{{ name }}</div>
+    <div>测试热更新: {{ content }}</div>
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { ref, onMounted } from 'vue'
 import { add } from '@/common/utils.js'
 
 const name = ref('')
+const content = ref('项目2的内容')
 
 // 生命周期 - 创建完成（访问当前this实例）
 onMounted(() => {
@@ -19,7 +21,6 @@ onMounted(() => {
 })
 </script>
 <style scoped>
-/* @import url(); 引入css类 */
 h1 {
   color: red;
 }

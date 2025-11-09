@@ -23,7 +23,6 @@ export default {
 }
 </script>
 <style scoped>
-/* @import url(); 引入css类 */
 h1 {
   color: blue;
 }

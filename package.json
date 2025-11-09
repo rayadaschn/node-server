@@ -7,14 +7,14 @@
     "dev": "_ENV='local' nodemon index.js",
     "prod": "_ENV='prod' nodemon index.js",
     "test": "_ENV='test' nodemon index.js",
-    "build": "node app/webpack/build.js"
+    "build:dev": "node --max-old-space-size=4096 app/webpack/dev.js",
+    "build:prod": "node app/webpack/prod.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^14.0.0",
-    "@vue/compiler-sfc": "^3.5.22",
     "ajv": "^8.17.1",
     "glob": "^11.0.3",
     "koa": "^3.1.1",
@@ -22,18 +22,28 @@
     "koa-nunjucks-2": "^3.0.2",
     "koa-static": "^5.0.0",
     "log4js": "^6.9.1",
-    "md5": "^2.3.0",
-    "vue": "^3.5.22"
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
+    "@vue/compiler-sfc": "^3.5.22",
     "babel-loader": "^10.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "express": "^5.1.0",
     "html-webpack-plugin": "^5.6.4",
+    "mini-css-extract-plugin": "^2.9.4",
     "nodemon": "^3.1.10",
     "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "thread-loader": "^4.0.4",
+    "vue": "^3.5.22",
     "vue-loader": "^17.4.2",
-    "webpack": "^5.102.1"
+    "webpack": "^5.102.1",
+    "webpack-dev-middleware": "^7.4.5",
+    "webpack-hot-middleware": "^2.26.1",
+    "webpack-merge": "^6.0.1"
   }
 }

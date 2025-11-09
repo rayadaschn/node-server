@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const webBaseConfig = require('./config/webpack.base.js')
+const webBaseConfig = require('./config/webpack.prod.js')
 
 console.log('\nbegin building...\n')
 
