@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge')
 const path = require('path')
 const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 // 基类配置
 const baseConfig = require('./webpack.base.js')
@@ -32,7 +33,7 @@ Object.keys(baseConfig.entry).forEach((key) => {
 // 开发环境配置
 const devConfig = {
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'eval-cheap-module-source-map',
   devServer: {
     contentBase: path.join(process.cwd(), './app/public/dist/dev'),
     compress: true,
@@ -50,6 +51,14 @@ const devConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin({
       multiStep: true, // 多步热更新, 官方推荐开启
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '**/*', // 移除所有文件
+        '!static/**', // 保留 static 目录
+      ],
+      verbose: true, // 写入日志到控制台
+      dry: false, // 实际移除文件
     }),
   ],
 }

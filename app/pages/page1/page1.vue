@@ -3,6 +3,7 @@
     <h1>项目1</h1>
     <input type="text" v-model="name" />
     <div>{{ name }}</div>
+    <el-input v-model="name" placeholder="请输入内容"></el-input>
   </div>
 </template>
 
