@@ -1,8 +1,8 @@
 module.exports = {
-  name: '淘宝',
-  desc: '淘宝商品管理系统',
-  icon: 'taobao',
-  homePage: '/taobao/dashboard',
+  name: 'pdd',
+  desc: '拼多多商品管理系统',
+  icon: 'pdd',
+  homePage: '/pdd/dashboard',
   menu: [
     {
       key: 'product',
