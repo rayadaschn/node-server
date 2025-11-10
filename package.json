@@ -8,7 +8,8 @@
     "prod": "_ENV='prod' nodemon index.js",
     "test": "_ENV='test' nodemon index.js",
     "build:dev": "node --max-old-space-size=4096 app/webpack/dev.js",
-    "build:prod": "node app/webpack/prod.js"
+    "build:prod": "node app/webpack/prod.js",
+    "model": "node model/index.js"
   },
   "keywords": [],
   "author": "",
