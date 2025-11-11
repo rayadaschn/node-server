@@ -55,7 +55,7 @@ const projectExtendModel = (model, project) => {
  *  }
  * }]
  */
-function loadModels() {
+module.exports = function loadModels(app) {
   const modelList = []
 
   // 遍历返回当前文件夹并挂载到 modelList 上
@@ -102,7 +102,7 @@ function loadModels() {
       project[key] = projectExtendModel(model, project[key])
     }
   })
-  console.log('🚀 ~ loadModels ~ modelList:', JSON.stringify(modelList))
-}
 
-loadModels()
+  return modelList
+  // console.log('🚀 ~ loadModels ~ modelList:', JSON.stringify(modelList))
+}

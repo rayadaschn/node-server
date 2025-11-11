@@ -6,4 +6,9 @@ module.exports = (app, router) => {
     '/api/project/list',
     ProjectController.getList.bind(ProjectController),
   )
+
+  router.get(
+    '/api/model/list',
+    ProjectController.getModelList.bind(ProjectController),
+  )
 }
