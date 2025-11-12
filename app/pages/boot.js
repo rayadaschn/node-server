@@ -5,6 +5,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import pinia from '@/store/index.js'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 export default function createMyApp(
   AppComponent,
@@ -14,6 +15,10 @@ export default function createMyApp(
 
   // 全局注册 ElementPlus 组件库
   app.use(ElementPlus)
+
+  for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+  }
   // 注册 Pinia 状态管理库
   app.use(pinia)
 

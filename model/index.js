@@ -104,5 +104,4 @@ module.exports = function loadModels(app) {
   })
 
   return modelList
-  // console.log('🚀 ~ loadModels ~ modelList:', JSON.stringify(modelList))
 }
