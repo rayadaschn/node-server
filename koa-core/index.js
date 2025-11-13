@@ -14,8 +14,11 @@ const routerSchemaLoader = require('./loader/router-schema')
 const routerLoader = require('./loader/router')
 const serviceLoader = require('./loader/service')
 
+// 引入数据库初始化
+const initDb = require('./db')
+
 module.exports = {
-  start(options = {}) {
+  async start(options = {}) {
     const app = new Koa()
 
     // 应用配置
@@ -33,6 +36,9 @@ module.exports = {
     // 环境变量
     app.env = env(app)
     console.log('🚀 ~ start ~ app.env:', app.env.getEnv())
+
+    // 初始化数据库
+    await initDb(app)
 
     // 加载配置
     configLoader(app)
