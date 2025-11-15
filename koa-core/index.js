@@ -13,6 +13,8 @@ const middlewareLoader = require('./loader/middleware')
 const routerSchemaLoader = require('./loader/router-schema')
 const routerLoader = require('./loader/router')
 const serviceLoader = require('./loader/service')
+const schedulerLoader = require('./loader/scheduler')
+const workerPoolLoader = require('./loader/worker-pool')
 
 // 引入数据库初始化
 const initDb = require('./db')
@@ -57,6 +59,20 @@ module.exports = {
 
     // 加载服务
     serviceLoader(app)
+
+    // 初始化 worker pool
+    try {
+      workerPoolLoader(app)
+    } catch (err) {
+      console.warn('[workerPool] failed to init', err && err.message)
+    }
+
+    // 加载轻量调度（启动后会在每天 21:00 触发处理任务）
+    try {
+      schedulerLoader(app)
+    } catch (err) {
+      console.warn('[scheduler] scheduler loader failed to start', err.message)
+    }
 
     // 注册全局中间件
     try {

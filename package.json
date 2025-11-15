@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "_ENV='local' nodemon index.js",
+    "dev:test": "SCHEDULER_IMMEDIATE=1 SCHEDULER_CONCURRENCY=3 nodemon index.js",
     "prod": "_ENV='prod' nodemon index.js",
     "test": "_ENV='test' nodemon index.js",
     "build:dev": "node --max-old-space-size=4096 app/webpack/dev.js",
@@ -26,7 +27,9 @@
     "koa-static": "^5.0.0",
     "log4js": "^6.9.1",
     "lowdb": "^7.0.1",
-    "md5": "^2.3.0"
+    "md5": "^2.3.0",
+    "node-cron": "^4.2.1",
+    "piscina": "^5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
