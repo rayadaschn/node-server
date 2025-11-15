@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import pinia from '@/store/index.js'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 export default function createMyApp(
@@ -29,8 +29,9 @@ export default function createMyApp(
 
   // 引入页面路由
   if (routes.length > 0) {
+    // 不用 createWebHashHistory, 因为会在 url 中添加 # 符号
     const router = createRouter({
-      history: createWebHashHistory(),
+      history: createWebHistory(),
       routes,
     })
     app.use(router)
